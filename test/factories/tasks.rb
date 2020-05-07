@@ -4,13 +4,7 @@ FactoryBot.define do
     description
     state
     expired_at
-    
-    trait :author_id do
-      author_id
-    end
-    
-    trait :assignee_id do
-      assignee_id
-    end
+    author factory: :user, :manager 
+    assignee factory: :user, :developer
   end
 end
