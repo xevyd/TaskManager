@@ -14,16 +14,4 @@ FactoryBot.define do
   sequence :expired_at do
     (DateTime.current + 14).to_date
   end
-
-  factory :admin do
-    type { 'admin' }
-  end
-
-  factory :developer do
-    type { 'developer' }
-  end
-
-  factory :manager do
-    type { 'manager' }
-  end
 end
