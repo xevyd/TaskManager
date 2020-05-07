@@ -4,7 +4,7 @@ FactoryBot.define do
     description
     state
     expired_at
-    author factory: :user, :manager 
-    assignee factory: :user, :developer
+    author factory: :manager
+    assignee factory: :developer
   end
 end
