@@ -14,4 +14,8 @@ FactoryBot.define do
   sequence :expired_at do
     (DateTime.current + 14).to_date
   end
+
+  sequence :string do |n|
+    "string#{n}"
+  end
 end
