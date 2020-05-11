@@ -5,9 +5,9 @@ FactoryBot.define do
     password
     email
 
-    factory :admin do
-      type { 'admin' }
-    end
+    # factory :admin do
+    #   type { 'admin' }
+    # end
 
     factory :developer do
       type { 'developer' }
