@@ -24,7 +24,7 @@ services:
       GEM_PATH: /bundle_cache
       RAILS_PORT: 8080
       RUBYOPT: -W:no-deprecated -W:no-experimental
-    command: bundle exec rails s -b '0.0.0.0' -p 8080
+    command: bundle exec rails s -b '0.0.0.0' -p 3000
 
   db:
     image: postgres:11.4
