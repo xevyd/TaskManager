@@ -30,20 +30,20 @@ class Admin::UsersControllerTest < ActionController::TestCase
 
   test 'should post create' do
     user = attributes_for(:user)
-    post :create, params: { user: user }
-    assert_response :redirect
+    tmp = post :create, params: { user: user }
+    assert User.find_by(first_name: user[:first_name]).present?
   end
-
+  
   test 'should patch update' do
     user = create(:user)
     user_attrs = attributes_for(:user)
     patch :update, params: { id: user.id, user: user_attrs }
-    assert_response :redirect
+    assert User.find(user.id)[:first_name] == user_attrs[:first_name]
   end
-
+  
   test 'should delete destroy' do
     user = create(:user)
     delete :destroy, params: { id: user.id }
-    assert_response :redirect
+    assert_not User.exists?(user.id)
   end
 end
