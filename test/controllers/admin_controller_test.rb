@@ -30,7 +30,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
 
   test 'should post create' do
     user = attributes_for(:user)
-    tmp = post :create, params: { user: user }
+    post :create, params: { user: user }
     assert User.find_by(first_name: user[:first_name]).present?
   end
   
