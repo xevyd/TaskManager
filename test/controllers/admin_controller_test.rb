@@ -31,16 +31,18 @@ class Admin::UsersControllerTest < ActionController::TestCase
   test 'should post create' do
     user = attributes_for(:user)
     post :create, params: { user: user }
-    assert User.find_by(first_name: user[:first_name]).present?
+    user_in_db = User.find_by(email: user[:email])
+    assert user_in_db.present?
   end
-  
+
   test 'should patch update' do
     user = create(:user)
     user_attrs = attributes_for(:user)
     patch :update, params: { id: user.id, user: user_attrs }
-    assert User.find(user.id)[:first_name] == user_attrs[:first_name]
+    user_in_db = User.find(user.id)[:email]
+    assert user_in_db == user_attrs[:email]
   end
-  
+
   test 'should delete destroy' do
     user = create(:user)
     delete :destroy, params: { id: user.id }

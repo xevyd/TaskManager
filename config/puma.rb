@@ -12,8 +12,6 @@ threads min_threads_count, max_threads_count
 #
 port        ENV.fetch("PORT") { 3000 }
 
-bind 'tcp://0.0.0.0:8080'
-
 # Specifies the `environment` that Puma will run in.
 #
 environment ENV.fetch("RAILS_ENV") { "development" }
