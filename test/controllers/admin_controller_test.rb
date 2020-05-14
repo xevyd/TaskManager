@@ -9,6 +9,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
   test 'should get show' do
     user = create(:user)
     get :show, params: { id: user.id }
+    sign_in user
     assert_response :success
   end
 
@@ -37,6 +38,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
     assert created_user[:first_name] == user_attrs[:first_name]
     assert created_user[:last_name] == user_attrs[:last_name]
     assert created_user[:email] == user_attrs[:email]
+    assert created_user.authenticate(user_attrs[:password]) == created_user
   end
 
   test 'should patch update' do
@@ -44,10 +46,11 @@ class Admin::UsersControllerTest < ActionController::TestCase
     user_attrs = attributes_for(:user)
     patch :update, params: { id: user.id, user: user_attrs }
     patched_user = User.find(user.id)
-
+    
     assert patched_user[:first_name] == user_attrs[:first_name]
     assert patched_user[:last_name] == user_attrs[:last_name]
     assert patched_user[:email] == user_attrs[:email]
+    assert patched_user.authenticate(user_attrs[:password]) == patched_user
   end
 
   test 'should delete destroy' do

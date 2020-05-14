@@ -6,7 +6,15 @@ FactoryBot.define do
     email
 
     factory :manager do
-      type { 'manager' }
+      type { 'Manager' }
+    end
+
+    factory :admin do
+      type { 'Admin' }
+    end
+
+    factory :developer do
+      type { 'Developer' }
     end
   end
 end
