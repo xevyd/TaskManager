@@ -29,18 +29,25 @@ class Admin::UsersControllerTest < ActionController::TestCase
   end
 
   test 'should post create' do
-    user = attributes_for(:user)
-    post :create, params: { user: user }
-    user_in_db = User.find_by(email: user[:email])
-    assert user_in_db.present?
+    user_attrs = attributes_for(:user)
+    post :create, params: { user: user_attrs }
+    created_user = User.find_by(email: user_attrs[:email])
+
+    assert created_user.present?
+    assert created_user[:first_name] == user_attrs[:first_name]
+    assert created_user[:last_name] == user_attrs[:last_name]
+    assert created_user[:email] == user_attrs[:email]
   end
 
   test 'should patch update' do
     user = create(:user)
     user_attrs = attributes_for(:user)
     patch :update, params: { id: user.id, user: user_attrs }
-    user_in_db = User.find(user.id)[:email]
-    assert user_in_db == user_attrs[:email]
+    patched_user = User.find(user.id)
+
+    assert patched_user[:first_name] == user_attrs[:first_name]
+    assert patched_user[:last_name] == user_attrs[:last_name]
+    assert patched_user[:email] == user_attrs[:email]
   end
 
   test 'should delete destroy' do
