@@ -46,7 +46,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
     user_attrs = attributes_for(:user)
     patch :update, params: { id: user.id, user: user_attrs }
     patched_user = User.find(user.id)
-    
+
     assert patched_user[:first_name] == user_attrs[:first_name]
     assert patched_user[:last_name] == user_attrs[:last_name]
     assert patched_user[:email] == user_attrs[:email]
