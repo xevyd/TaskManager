@@ -1,5 +1,5 @@
 FactoryBot.define do
-  sequence :name, aliases: [:first_name, :last_name, :description, :author_id, :assignee_id] do |n|
+  sequence :name, aliases: [:first_name, :last_name, :description] do |n|
     "Name #{n}"
   end
 
