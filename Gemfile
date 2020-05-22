@@ -60,3 +60,4 @@ gem 'responders'
 gem 'active_model_serializers'
 
 gem 'js-routes'
+gem 'webpacker-react'
