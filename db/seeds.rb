@@ -18,3 +18,11 @@ admin.save
   u.password = "#{i}"
   u.save
 end
+
+20.times do |i|
+  t = Task.new
+  t.state = [:new_task, :in_development, :in_qa, :in_code_review, :ready_for_release, :released, :archived].sample
+  t.name = "Task #{i} name"
+  t.description = "Task #{i} description"
+  t.save
+end
