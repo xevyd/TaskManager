@@ -33,6 +33,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot_rails'
   gem 'rubocop'
+  gem 'rubocop-performance', require: false
 end
 
 group :development do
@@ -58,3 +59,6 @@ gem 'kaminari'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'responders'
 gem 'active_model_serializers'
+
+gem 'js-routes'
+gem 'webpacker-react'
