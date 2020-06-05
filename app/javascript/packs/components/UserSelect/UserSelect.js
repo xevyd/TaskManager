@@ -8,6 +8,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import InputLabel from '@material-ui/core/InputLabel';
 
 import UsersRepository from 'repositories/UsersRepository';
+import UserPresenter from 'presenters/UserPresenter';
 
 import useStyles from './useStyles';
 
@@ -43,8 +44,8 @@ const UserSelect = ({
             cacheOptions
             loadOptions={handleLoadOptions}
             defaultOptions
-            getOptionLabel={(user) => `${user.firstName} ${user.lastName}`}
-            getOptionValue={(user) => user.id}
+            getOptionLabel={(user) => UserPresenter.fullName(user)}
+            getOptionValue={(user) => UserPresenter.id(user)}
             isDisabled={isDisabled}
             isClearable={isClearable}
             defaultValue={value}
