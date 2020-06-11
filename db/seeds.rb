@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-admin = Admin.find_or_create_by(first_name: 'admin', last_name: 'admin', email: 'admin@localhost')
+admin = Admin.find_or_create_by(first_name: 'admin', last_name: 'admin', email: 'admin@local.host')
 admin.password = 'admin'
 admin.save
 
