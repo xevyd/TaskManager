@@ -14,6 +14,7 @@ require('channels');
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
+import 'stylesheets/application';
 import 'material-design-lite/material.js';
 import WebpackerReact from 'webpacker-react';
 import TaskBoard from './components/TaskBoard';
