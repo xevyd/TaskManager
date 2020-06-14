@@ -66,3 +66,4 @@ gem 'js-routes'
 gem 'webpacker-react'
 
 gem 'rollbar'
+gem 'newrelic_rpm'

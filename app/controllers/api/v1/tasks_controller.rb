@@ -1,9 +1,3 @@
-require 'rollbar'
-
-Rollbar.configure do |config|
-  config.access_token = 'a6bb8fc6044247b79d3ff36311b29e5f'
-end
-
 class Api::V1::TasksController < Api::V1::ApplicationController
   def index
     tasks = Task.order(created_at: :desc).ransack(ransack_params).
@@ -20,7 +14,6 @@ class Api::V1::TasksController < Api::V1::ApplicationController
     task = Task.find(params[:id])
 
     respond_with(task, serializer: TaskSerializer)
-    Rollbar.error('show')
   end
 
   def create
