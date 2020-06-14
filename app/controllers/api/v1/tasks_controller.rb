@@ -2,6 +2,8 @@ class Api::V1::TasksController < Api::V1::ApplicationController
   def index
     tasks = Task.order(created_at: :desc).ransack(ransack_params).
       result.
+      includes([:author]).
+      includes([:assignee]).
       page(page).
       per(per_page)
 
