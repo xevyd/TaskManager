@@ -14,28 +14,28 @@ class Api::V1::TasksControllerTest < ActionController::TestCase
   end
 
   test 'should post create' do
-    author = create :user
+    author = create(:user)
     sign_in(author)
-  
-    assignee = create :user
+
+    assignee = create(:user)
     task_attributes = attributes_for(:task).merge({ assignee_id: assignee.id })
-  
+
     assert_emails 1 do
       post :create, params: { task: task_attributes, format: :json }
     end
     assert_response :created
-  
+
     data = JSON.parse(response.body)
     created_task = Task.find(data['task']['id'])
-  
+
     assert created_task.present?
     assert created_task.assignee == assignee
     assert created_task.author == author
   end
 
   test 'should put update' do
-    author = create :user
-    assignee = create :user
+    author = create(:user)
+    assignee = create(:user)
     task = create(:task, author: author)
     task_attributes = attributes_for(:task).
       merge({ author_id: author.id, assignee_id: assignee.id }).
@@ -51,7 +51,7 @@ class Api::V1::TasksControllerTest < ActionController::TestCase
   end
 
   test 'should delete destroy' do
-    author = create :user
+    author = create(:user)
     task = create(:task, author: author)
 
     assert_emails 1 do
