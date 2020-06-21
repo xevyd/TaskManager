@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  default_url_options :host => "localhost:3000"
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   root :to => "web/boards#show"
   
@@ -6,6 +7,7 @@ Rails.application.routes.draw do
     resource :board, only: :show
     resource :session, only: [:new, :create, :destroy]
     resources :developers, only: [:new, :create]
+    resource :password, only: [:new, :create, :edit, :update]
   end
 
   namespace :admin do
