@@ -8,8 +8,16 @@ class User < ApplicationRecord
   validates :last_name, presence: true, length: { minimum: 2 }
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true
 
+  HOURS_VALID = 24
+
   def self.new_token
-    SecureRandom.urlsafe_base64
+    token = SecureRandom.urlsafe_base64
+
+    while User.find_by(password_reset_token: token)
+      token = SecureRandom.urlsafe_base64
+    end
+
+    token
   end
 
   def self.digest(string)
@@ -28,17 +36,13 @@ class User < ApplicationRecord
     update_attribute(:password_reset_token_sent_at, nil)
   end
 
-  def send_password_reset_email
-    UserMailer.password_reset(self).deliver_now
-  end
-
   def password_reset_token_expired?
-    password_reset_token_sent_at < 24.hours.ago
+    password_reset_token_sent_at < HOURS_VALID.hours.ago
   end
 
   def self.find_by_password_reset_token(token)
     user = User.find_by(password_reset_token: token)
-    if user && (not user.password_reset_token_expired?)
+    if user && !user.password_reset_token_expired?
       user
     end
   end
