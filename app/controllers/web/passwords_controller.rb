@@ -10,7 +10,7 @@ class Web::PasswordsController < Web::ApplicationController
       @user.create_password_reset_token
       UserMailer.password_reset(@user).deliver_now
       flash[:info] = 'Email sent with password reset instructions'
-      redirect_to(:root)
+      redirect_to :root_url
     else
       flash.now[:danger] = 'Email address not found'
       render('new')
@@ -24,15 +24,14 @@ class Web::PasswordsController < Web::ApplicationController
   def update
     @user = User.find_by_password_reset_token(params[:token])
 
-    if @user
-      if @user.update(user_params)
-        @user.remove_password_reset_token
-        flash[:info] = 'Password succesful update'
-        redirect_to(:new_session)
-      end
-    else
+    if !@user
       flash.now[:danger] = 'User not found'
       render('new')
+    else
+      @user.update(user_params)
+      @user.remove_password_reset_token
+      flash[:info] = 'Password succesful update'
+      redirect_to(:new_session)
     end
   end
 

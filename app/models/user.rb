@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :first_name, presence: true, length: { minimum: 2 }
   validates :last_name, presence: true, length: { minimum: 2 }
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true
+  validates :password_reset_token, uniqueness: true
 
   HOURS_VALID = 24
 
@@ -27,13 +28,11 @@ class User < ApplicationRecord
 
   def create_password_reset_token
     self.password_reset_token = User.new_token
-    update_attribute(:password_reset_token, User.digest(password_reset_token))
-    update_attribute(:password_reset_token_sent_at, Time.zone.now)
+    update(password_reset_token: User.digest(password_reset_token), password_reset_token_sent_at: Time.zone.now)
   end
 
   def remove_password_reset_token
-    update_attribute(:password_reset_token, nil)
-    update_attribute(:password_reset_token_sent_at, nil)
+    update(password_reset_token: nil, password_reset_token_sent_at: nil)
   end
 
   def password_reset_token_expired?
