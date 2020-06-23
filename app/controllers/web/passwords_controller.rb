@@ -10,7 +10,7 @@ class Web::PasswordsController < Web::ApplicationController
       @user.create_password_reset_token
       UserMailer.password_reset(@user).deliver_now
       flash[:info] = 'Email sent with password reset instructions'
-      redirect_to :root_url
+      redirect_to(:root)
     else
       flash.now[:danger] = 'Email address not found'
       render('new')
