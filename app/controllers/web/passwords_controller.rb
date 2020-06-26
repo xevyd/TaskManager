@@ -18,11 +18,11 @@ class Web::PasswordsController < Web::ApplicationController
   end
 
   def edit
-    @user = User.find_by_password_reset_token(params[:token])
+    @user = User.find_and_validate_password_reset_token(params[:token])
   end
 
   def update
-    @user = User.find_by_password_reset_token(params[:token])
+    @user = User.find_and_validate_password_reset_token(params[:token])
 
     if !@user
       flash.now[:danger] = 'User not found'

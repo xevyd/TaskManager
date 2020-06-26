@@ -7,7 +7,6 @@ class User < ApplicationRecord
   validates :first_name, presence: true, length: { minimum: 2 }
   validates :last_name, presence: true, length: { minimum: 2 }
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true
-  validates :password_reset_token, uniqueness: true
 
   HOURS_VALID = 24
 
@@ -39,7 +38,7 @@ class User < ApplicationRecord
     password_reset_token_sent_at < HOURS_VALID.hours.ago
   end
 
-  def self.find_by_password_reset_token(token)
+  def self.find_and_validate_password_reset_token(token)
     user = User.find_by(password_reset_token: token)
     if user && !user.password_reset_token_expired?
       user
