@@ -70,3 +70,5 @@ gem 'webpacker-react'
 
 gem 'rollbar'
 gem 'newrelic_rpm'
+
+gem 'sidekiq'
