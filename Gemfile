@@ -41,6 +41,9 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'bullet'
+
+  gem 'letter_opener'
+  gem 'letter_opener_web'
 end
 
 group :test do

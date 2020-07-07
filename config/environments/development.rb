@@ -69,4 +69,7 @@ Rails.application.configure do
     Bullet.add_footer = true
     Bullet.skip_html_injection = false
   end
+
+  config.action_mailer.delivery_method = :letter_opener_web
+  config.action_mailer.perform_caching = true
 end
