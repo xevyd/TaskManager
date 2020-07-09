@@ -1,4 +1,5 @@
 require 'simplecov'
+require 'sidekiq/testing'
 SimpleCov.start
 
 ENV['RAILS_ENV'] ||= 'test'
@@ -9,6 +10,7 @@ class ActiveSupport::TestCase
   include FactoryBot::Syntax::Methods
   include AuthHelper
   include ActionMailer::TestHelper
+  Sidekiq::Testing.inline!
 
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)

@@ -13,6 +13,7 @@ RUN mkdir $RAILS_ROOT
 WORKDIR $RAILS_ROOT
 
 COPY Gemfile Gemfile.lock  ./
+RUN bundle update
 RUN bundle install --jobs 5
 
 COPY package.json yarn.lock ./

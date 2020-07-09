@@ -70,3 +70,8 @@ gem 'webpacker-react'
 
 gem 'rollbar'
 gem 'newrelic_rpm'
+
+gem 'sidekiq'
+gem 'sidekiq-failures'
+gem 'sidekiq-throttled'
+gem 'sidekiq-unique-jobs', '~> 6.0.13'
