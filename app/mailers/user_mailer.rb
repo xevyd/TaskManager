@@ -24,4 +24,11 @@ class UserMailer < ApplicationMailer
     @user = user
     mail(from: 'noreply@taskmanager.com', to: user.email, subject: 'Password reset')
   end
+
+  def something_wrong
+    user = params[:user]
+    task = params[:task]
+
+    mail(from: 'noreply@taskmanager.com', to: user.email, subject: 'Something wrong')
+  end
 end

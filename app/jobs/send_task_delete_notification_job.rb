@@ -4,8 +4,12 @@ class SendTaskDeleteNotificationJob < ApplicationJob
 
   def perform(task_id, assignee_id)
     user = User.find_by(id: assignee_id)
-    return if user.blank?
+    task = Task.find_by(id: task_id)
 
-    UserMailer.with(user: user, task: task_id).task_deleted.deliver_now
+    if user.blank?
+      UserMailer.with(user: task.author, task: task).something_wrong.deliver_now
+    else
+      UserMailer.with(user: user, task: task_id).task_deleted.deliver_now
+    end
   end
 end
