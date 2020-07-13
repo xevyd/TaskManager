@@ -70,3 +70,7 @@ gem 'webpacker-react'
 
 gem 'rollbar'
 gem 'newrelic_rpm'
+
+gem 'mini_magick'
+gem 'virtus'
+gem 'file_validators'
